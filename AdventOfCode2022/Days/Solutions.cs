@@ -159,5 +159,26 @@ namespace AdventOfCode2022
 			Console.WriteLine($"day 06 - part 2: {markerPos}");
 		}
 		#endregion Day06
+
+		#region Day07
+		public static void SolveDay07Part1()
+		{
+			var fs = FileBrowseParser.GetFileSystem();
+			var folders = FileBrowseParser.FindFolders(fs, f => f.Size <= 100000);
+
+			Console.WriteLine($"day 07 - part 1: {folders.Sum(f => f.Size)}");
+		}
+
+		public static void SolveDay07Part2()
+		{
+			var fs = FileBrowseParser.GetFileSystem();
+			var totalUsed = fs.RootFolder.Size;
+			var unusedSpace = 70000000 - totalUsed;
+			var neededSpace = 30000000 - unusedSpace;
+			var folder = FileBrowseParser.FindFolders(fs, f => f.Size >= neededSpace).OrderBy(f => f.Size).First();
+
+			Console.WriteLine($"day 07 - part 2: {folder.Name} - {folder.Size}");
+		}
+		#endregion Day07
 	}
 }
