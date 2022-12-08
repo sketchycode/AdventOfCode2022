@@ -180,5 +180,34 @@ namespace AdventOfCode2022
 			Console.WriteLine($"day 07 - part 2: {folder.Name} - {folder.Size}");
 		}
 		#endregion Day07
+
+		#region Day08
+		public static void SolveDay08Part1()
+		{
+			var trees = TreeHouseFinder.GetTrees();
+			var visibleCount = 0;
+			foreach (var tree in trees)
+			{
+				visibleCount += tree.IsVisible ? 1 : 0;
+			}
+
+			Console.WriteLine($"day 08 - part 1: {visibleCount}");
+		}
+
+		public static void SolveDay08Part2()
+		{
+			var trees = TreeHouseFinder.GetTrees();
+			int highestScore = int.MinValue;
+
+			foreach (var tree in trees)
+			{
+				var curScore = tree.ScenicScore;
+				if (curScore > highestScore)
+					highestScore = curScore;
+			}
+			
+			Console.WriteLine($"day 08 - part 2: {highestScore}");
+		}
+		#endregion Day08
 	}
 }

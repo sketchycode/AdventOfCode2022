@@ -21,6 +21,8 @@ namespace AdventOfCode2022
 			Solutions.SolveDay06Part2();
 			Solutions.SolveDay07Part1();
 			Solutions.SolveDay07Part2();
+			Solutions.SolveDay08Part1();
+			Solutions.SolveDay08Part2();
 		}
 	}
 }
