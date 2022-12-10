@@ -1,5 +1,6 @@
 ﻿using AdventOfCode2022.Days;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -209,5 +210,68 @@ namespace AdventOfCode2022
 			Console.WriteLine($"day 08 - part 2: {highestScore}");
 		}
 		#endregion Day08
+
+		#region Day09
+		public static void SolveDay09Part1()
+		{
+			var rope = new RopeTracker.Rope();
+			var lines = File.ReadLines("Inputs\\rope_input.txt");
+
+			foreach (var line in lines)
+			{
+				rope.Move(line);
+			}
+
+			Console.WriteLine($"day 09 - part 1: {rope.VisitedCoordsCount}");
+		}
+
+		public static void SolveDay09Part2()
+		{
+			var rope = new RopeTracker.Rope(9);
+			var lines = File.ReadLines("Inputs\\rope_input.txt");
+
+			foreach (var line in lines)
+			{
+				rope.Move(line);
+			}
+
+			Console.WriteLine($"day 09 - part 2: {rope.VisitedCoordsCount}");
+		}
+		#endregion Day09
+
+		#region Day10
+		public static void SolveDay10Part1()
+		{
+			var cpu = new DisplayProgramCpu.Cpu();
+			var lines = File.ReadLines("Inputs\\displayprogram_input.txt");
+			cpu.SubmitProgram(lines);
+			var queuedCycles = new Queue<int>(new[] { 20, 60, 100, 140, 180, 220 });
+			var signalValue = 0;
+			foreach (var state in cpu)
+			{
+				if (queuedCycles.Count > 0 && state.cycle == queuedCycles.Peek())
+				{
+					queuedCycles.Dequeue();
+					signalValue += state.cycle * state.register;
+				}
+			}
+
+			Console.WriteLine($"day 10 - part 1: {signalValue}");
+		}
+
+		public static void SolveDay10Part2()
+		{
+			var cpu = new DisplayProgramCpu.Cpu();
+			var lines = File.ReadLines("Inputs\\displayprogram_input.txt");
+			cpu.SubmitProgram(lines);
+			List<List<bool>> display = DisplayProgramCpu.DrawScreen(cpu);
+
+			Console.WriteLine($"day 10 - part 2: ");
+			foreach (var displayRow in display)
+			{
+				Console.WriteLine(string.Join("", displayRow.Select(p => p ? "#" : ".")));
+			}
+		}
+		#endregion Day10
 	}
 }
